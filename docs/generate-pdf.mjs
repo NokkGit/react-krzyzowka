@@ -1,0 +1,21 @@
+import PDFDocument from 'pdfkit';
+import fs from 'node:fs';
+
+const output = 'docs/instrukcja-uzytkownika.pdf';
+const doc = new PDFDocument({ size: 'A4', margin: 58 });
+doc.pipe(fs.createWriteStream(output));
+doc.font('C:/Windows/Fonts/arial.ttf');
+doc.fillColor('#172132').fontSize(25).text('Krzyzowka kodera - instrukcja', { paragraphGap: 12 });
+doc.fillColor('#536fc1').fontSize(11).text('Projekt React | wersja 1.0', { paragraphGap: 25 });
+doc.fillColor('#172132').fontSize(15).text('Cel aplikacji', { paragraphGap: 8 });
+doc.fontSize(11).text('Krzyzowka sprawdza znajomosc podstawowych pojec zwiazanych z programowaniem i ekosystemem React.', { lineGap: 5, paragraphGap: 18 });
+doc.fontSize(15).text('Interfejs', { paragraphGap: 8 });
+doc.fontSize(11).text('Plansza zawiera pola do wpisywania pojedynczych liter. Lista definicji znajduje sie po prawej stronie i jest podzielona na hasla poziome oraz pionowe. Klikniecie definicji podswietla pola nalezace do hasla, a aktywne pole otrzymuje dodatkowe wyroznienie.', { lineGap: 5, paragraphGap: 18 });
+doc.fontSize(15).text('Przyciski', { paragraphGap: 8 });
+doc.fontSize(11).text('• Sprawdz - poprawne pola sa zielone, a bledne czerwone.\n• Pokaz rozwiazanie - uzupelnia cala krzyzowke.\n• Wyczysc - usuwa wpisane litery i wyniki sprawdzania.', { lineGap: 7, paragraphGap: 18 });
+doc.fontSize(15).text('Uruchomienie', { paragraphGap: 8 });
+doc.fontSize(11).text('W terminalu w folderze projektu wykonaj:');
+doc.font('C:/Windows/Fonts/consola.ttf').fontSize(10).text('npm install\nnpm run dev', { indent: 16, lineGap: 5, paragraphGap: 18 });
+doc.font('C:/Windows/Fonts/arial.ttf').fontSize(15).text('Technologie', { paragraphGap: 8 });
+doc.fontSize(11).text('React, Vite i Vitest. Dane hasel oraz logika sprawdzania znajduja sie w osobnym module, co ulatwia testowanie i dalsza rozbudowe.', { lineGap: 5 });
+doc.end();
